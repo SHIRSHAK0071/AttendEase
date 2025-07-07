@@ -1,3 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../types/navigation';
 import React, { useEffect, useState } from 'react';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Notifications from 'expo-notifications';
@@ -39,7 +42,8 @@ export default function ScheduleBuilderPage() {
 
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   const timeSlots = ['9-10', '10-11', '11-12', '12-1', '1-2', '2-3', '3-4', '4-5', '5-6'];
-
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+ 
   useEffect(() => {
     const setup = async () => {
       await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
@@ -197,6 +201,15 @@ export default function ScheduleBuilderPage() {
         </TouchableOpacity>
       </View>
 
+      <TouchableOpacity
+  style={styles.dashboardButton}
+  onPress={() => navigation.navigate('Dashboard')}
+>
+  <Text style={styles.dashboardButtonText}> Go to Dashboard </Text>
+</TouchableOpacity>
+
+
+
       <View style={styles.dragInfoBar}>
         <Text style={styles.dragInfoText}>
           Hold the subject...and then tap on Column to place it
@@ -324,9 +337,10 @@ const styles = StyleSheet.create({
   saveButton: {
     backgroundColor: '#00BFFF',
     paddingVertical: 10,
+    paddingHorizontal: 10,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 18,
   },
   saveButtonText: {
     color: '#fff',
@@ -344,4 +358,37 @@ const styles = StyleSheet.create({
     color: '#555',
     fontStyle: 'italic',
   },
+
+dashboardButton: {
+  backgroundColor: '#FFFFFF',
+  paddingVertical: 10,
+  borderWidth: 2,                   // 👈 thickness of the border
+  borderColor: '#00BFFF',   
+  borderRadius: 8,
+    position: 'absolute',
+  bottom: 70,
+  right: 20,
+
+  marginTop: 430,
+  width: '-10%',
+},
+dashboardButtonText: {
+  color: '#555',
+  fontWeight: 'bold',
+  fontSize: 13,
+},
+
+// dashboardButton: {
+//     backgroundColor: '#00BFFF',
+//     paddingVertical: 10,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginTop: 10,
+//   },
+ 
+// dashboardButtonText: {
+//     color: '#fff',
+//     fontWeight: 'bold',
+//   },
+
 });

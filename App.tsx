@@ -13,6 +13,8 @@ import AccountReady from './app/acountReady';
 import ClassDetailsPage from './app/classDetails';
 import AddSubjectsPage from './app/subjects';
 import ScheduleBuilderPage from './app/scheduleBuilder';
+import DashboardScreen from './app/DashboardScreen';
+import DrawerMenuScreen from './app/DrawerMenuScreen';
 
 // Database Initialization
 import { initDB } from './database/initDB';  // ✅ Adjust this path to your DB file
@@ -58,6 +60,7 @@ export default function App() {
         <Stack.Screen name="ClassDetails" component={ClassDetailsPage} />
         <Stack.Screen name="AddSubjects" component={AddSubjectsPage} />
         <Stack.Screen name="ScheduleBuilder" component={ScheduleBuilderPage} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
